@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "what-was-that",
+  "version": "${version}",
+  "name": "What Was That?",
+  "description": "Is there something there... Or am I just crazy...",
+  "authors": [ "harmless-tech" ],
+  "contact": {
+    "homepage": "https://github.com/harmless-tech/mc-what-is-that",
+    "sources": "https://github.com/harmless-tech/mc-what-is-that.git"
+  },
+  "license": "MIT",
+  "icon": "assets/what-was-that/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [ "tech.harmless.mc.whatwasthat.WhatWasThat" ],
+    "client": [ "tech.harmless.mc.whatwasthat.WhatWasThatClient" ],
+    "fabric-datagen": [ "tech.harmless.mc.whatwasthat.WhatWasThatDataGenerator" ]
+  },
+  "mixins": [ "what-was-that.mixins.json", {
+    "config": "what-was-that.client.mixins.json",
+    "environment": "client"
+  } ],
+  "depends": {
+    "fabricloader": ">=0.15.7",
+    "minecraft": "~1.20.4",
+    "java": ">=17",
+    "fabric-api": "*"
+  },
+  "suggests": {
+    "another-mod": "*"
+  }
+}
