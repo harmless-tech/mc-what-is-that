@@ -66,12 +66,8 @@ jobs:
           distribution: temurin
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
-      - name: Clean
-        run: ./gradlew clean --info
-      - name: Build
-        run: ./gradlew build --info
-      - name: Publish package
-        run: ./gradlew publish --info
+      - name: Clean, Build, Publish
+        run: ./gradlew clean build publish --info
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Publish Modrinth
