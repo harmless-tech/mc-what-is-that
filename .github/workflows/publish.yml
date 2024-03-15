@@ -1,4 +1,4 @@
-name: Build
+name: Publish
 on:
   push:
     tags:
@@ -30,7 +30,7 @@ jobs:
           17,    # Java LTS & minimum supported by Minecraft
           21,    # Current Java LTS
         ]
-        os: [ubuntu-latest, windows-latest, macos-12, macos-14]
+        os: [ubuntu-latest, macos-14]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4

@@ -1,5 +1,6 @@
 package tech.harmless.mc.whatwasthat;
 
+import eu.midnightdust.lib.config.MidnightConfig;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.commands.CommandSourceStack;
@@ -8,6 +9,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import tech.harmless.mc.whatwasthat.config.WhatConfig;
 import tech.harmless.mc.whatwasthat.util.Tuple;
 import tech.harmless.mc.whatwasthat.what.WASoundRunningTowards;
 
@@ -24,6 +26,8 @@ public class WhatWasThat implements ModInitializer {
 		// Proceed with mild caution.
 
 		LOGGER.info("Init Stage for {} ({})", MOD_NAME, MOD_ID);
+
+		MidnightConfig.init(MOD_ID, WhatConfig.class);
 
 		WhatActions.init();
 

@@ -4,14 +4,10 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
-import org.apache.logging.log4j.core.jmx.Server;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import tech.harmless.mc.whatwasthat.config.WhatConfig;
-import tech.harmless.mc.whatwasthat.util.Tuple;
+import tech.harmless.mc.whatwasthat.config.WhatStaticConfig;
 import tech.harmless.mc.whatwasthat.what.IWhat;
-
-import java.util.Optional;
 
 // TODO: Target a player and bother them for a while.
 public class WhatActions {
@@ -41,7 +37,7 @@ public class WhatActions {
 
 	public static void decideTickListener(ServerLevel world) {
 		tickTrack += 1;
-		if (tickTrack < WhatConfig.ticksPerAction)
+		if (tickTrack < WhatStaticConfig.ticksPerAction)
 			return;
 
 		if (badPlayer != null)
