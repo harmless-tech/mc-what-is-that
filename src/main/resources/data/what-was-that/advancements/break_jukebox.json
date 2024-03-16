@@ -1,0 +1,28 @@
+{
+  "criteria": {
+    "place_jukebox": {
+      "conditions": {
+        "block": "minecraft:wall_torch"
+      },
+      "trigger": "minecraft:placed_block"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "description": {
+      "translate": "what-was-that.advancements.break_jukebox.desc"
+    },
+    "icon": {
+      "item": "minecraft:jukebox"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "what-was-that.advancements.break_jukebox.title"
+    }
+  },
+  "parent": "what-was-that:root",
+  "requirements": [ [ "place_jukebox" ] ],
+  "rewards": {
+    "recipes": [ "what-was-that:broken_jukebox" ]
+  }
+}

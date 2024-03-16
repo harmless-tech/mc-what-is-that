@@ -45,6 +45,7 @@ dependencies {
 	// To change the versions see the gradle.properties file
 	minecraft "com.mojang:minecraft:${project.minecraft_version}"
 
+	// mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
 	mappings loom.layered() {
 		officialMojangMappings()
 		parchment "org.parchmentmc.data:parchment-${project.minecraft_version}:${project.parchment_mappings}@zip"
@@ -138,21 +139,20 @@ spotbugsClient {
 spotless {
 	java {
 		target "src/*/java/**"
-
-		eclipse()
+		removeUnusedImports()
+		importOrder()
+		palantirJavaFormat()
 		formatAnnotations()
 	}
 	groovy {
 		target "*.gradle"
-
 		importOrder()
 		removeSemicolons()
-
 		greclipse()
 	}
 	json {
-		target "src/**/*.json"
-		jackson()
+		target "src/**/assets/**/*.json", "src/**/data/**/*.json"
+		jackson().feature('ORDER_MAP_ENTRIES_BY_KEYS', true)
 	}
 	format "xml", {
 		target "*.xml"

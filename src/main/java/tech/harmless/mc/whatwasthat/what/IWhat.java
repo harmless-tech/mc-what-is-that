@@ -5,7 +5,7 @@ import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.NotNull;
 
 public interface IWhat {
-	void update(@NotNull ServerLevel world, @NotNull ServerPlayer player);
+    void update(@NotNull ServerLevel world, @NotNull ServerPlayer player);
 
-	boolean isDone();
+    boolean isDone();
 }

@@ -7,7 +7,8 @@
   "authors": [ "harmless-tech" ],
   "contact": {
     "homepage": "https://github.com/harmless-tech/mc-what-is-that",
-    "sources": "https://github.com/harmless-tech/mc-what-is-that.git"
+    "sources": "https://github.com/harmless-tech/mc-what-is-that.git",
+    "issues": "https://github.com/harmless-tech/mc-what-is-that/issues"
   },
   "license": "MIT",
   "icon": "assets/what-was-that/icon.png",
@@ -29,5 +30,13 @@
   },
   "suggests": {
     "another-mod": "*"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "what-was-that.modrinth": "",
+        "what-was-that.wiki": ""
+      }
+    }
   }
 }

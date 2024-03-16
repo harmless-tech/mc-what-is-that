@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "on_join": {
+      "trigger": "what-was-that:join_trigger"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "background": "minecraft:textures/block/cherry_leaves.png",
+    "description": {
+      "translate": "what-was-that.advancements.root.desc"
+    },
+    "icon": {
+      "item": "minecraft:axolotl_bucket"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "what-was-that.advancements.root.title"
+    }
+  },
+  "requirements": [ [ "on_join" ] ]
+}

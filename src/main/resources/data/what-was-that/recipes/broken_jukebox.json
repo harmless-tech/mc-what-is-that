@@ -1,0 +1,11 @@
+{
+  "ingredients": [ {
+    "item": "minecraft:jukebox"
+  }, {
+    "tag": "what-was-that:strong_swords"
+  } ],
+  "result": {
+    "item": "what-was-that:broken_jukebox"
+  },
+  "type": "minecraft:crafting_shapeless"
+}

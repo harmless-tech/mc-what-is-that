@@ -3,16 +3,20 @@
 	xmlns="https://github.com/spotbugs/filter/3.0.0"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="https://github.com/spotbugs/filter/3.0.0 https://raw.githubusercontent.com/spotbugs/spotbugs/3.1.0/spotbugs/etc/findbugsfilter.xsd">
+	<!-- Mixins -->
 	<Match>
-		<Class name="tech.harmless.mc.whatwasthat.mixin.ExampleMixin" />
-		<Method name="init" />
+		<Package name="tech.harmless.mc.whatwasthat.mixin.*" />
 		<Bug pattern="UP_UNUSED_PARAMETER" />
 	</Match>
 	<Match>
-		<Class
-			name="tech.harmless.mc.whatwasthat.mixin.client.ExampleClientMixin" />
-		<Method name="run" />
+		<Package name="tech.harmless.mc.whatwasthat.mixin.client.*" />
 		<Bug pattern="UP_UNUSED_PARAMETER" />
+	</Match>
+
+	<!-- Outsiders can modify config file -->
+	<Match>
+		<Class name="tech.harmless.mc.whatwasthat.config.WhatConfig" />
+		<Bug pattern="MS_SHOULD_BE_FINAL" />
 	</Match>
 
 	<!-- TODO: Remove Later -->
