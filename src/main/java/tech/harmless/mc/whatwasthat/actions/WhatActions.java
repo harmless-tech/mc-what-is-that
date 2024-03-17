@@ -1,4 +1,4 @@
-package tech.harmless.mc.whatwasthat;
+package tech.harmless.mc.whatwasthat.actions;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.resources.ResourceLocation;
@@ -6,8 +6,8 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import tech.harmless.mc.whatwasthat.WhatWasThat;
 import tech.harmless.mc.whatwasthat.config.WhatConfig;
-import tech.harmless.mc.whatwasthat.what.IWhat;
 
 // TODO: Target a player and bother them for a while.
 public class WhatActions {
@@ -19,7 +19,7 @@ public class WhatActions {
     private static int ticksBotherBadPlayer;
     private static int maxTicksBotherBadPlayer;
 
-    @Nullable private static IWhat action;
+    @Nullable private static IWhatAction action;
 
     private static int tickTrack = 0;
 
@@ -29,7 +29,7 @@ public class WhatActions {
         ServerTickEvents.END_WORLD_TICK.register(PHASE_2, WhatActions::actorTickListener);
     }
 
-    protected static void set(@NotNull ServerPlayer player, @NotNull IWhat action) {
+    public static void set(@NotNull ServerPlayer player, @NotNull IWhatAction action) {
         WhatActions.badPlayer = player;
         ticksBotherBadPlayer = 0;
         maxTicksBotherBadPlayer = 0;

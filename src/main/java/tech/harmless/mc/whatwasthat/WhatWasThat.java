@@ -9,10 +9,12 @@ import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import tech.harmless.mc.whatwasthat.actions.ActionSoundRunningTowards;
+import tech.harmless.mc.whatwasthat.actions.WhatActions;
 import tech.harmless.mc.whatwasthat.advancements.JoinTrigger;
+import tech.harmless.mc.whatwasthat.blocks.WhatBlocks;
 import tech.harmless.mc.whatwasthat.config.WhatConfig;
 import tech.harmless.mc.whatwasthat.events.PlayerJoinEvent;
-import tech.harmless.mc.whatwasthat.what.WASoundRunningTowards;
 
 public final class WhatWasThat implements ModInitializer {
     public static final String MOD_NAME = "What Was That?";
@@ -30,10 +32,13 @@ public final class WhatWasThat implements ModInitializer {
 
         MidnightConfig.init(MOD_ID, WhatConfig.class);
 
+        // TODO: ITEMS
+        WhatBlocks.init();
         WhatActions.init();
 
         PlayerJoinEvent.EVENT.register(JoinTrigger.JOIN_TRIGGER::trigger);
 
+        // TODO: Remove!
         CommandRegistrationCallback.EVENT.register(((dispatcher, registryAccess, environment) -> {
             dispatcher.register(Commands.literal("wwt_test").executes(context -> {
                 CommandSourceStack src = context.getSource();
@@ -42,7 +47,7 @@ public final class WhatWasThat implements ModInitializer {
 
                 WhatActions.set(
                         player,
-                        new WASoundRunningTowards(player, Holder.direct(SoundEvents.MUD_STEP), 30.0, 0.25f, 0.05f));
+                        new ActionSoundRunningTowards(player, Holder.direct(SoundEvents.MUD_STEP), 30.0, 0.25f, 0.05f));
 
                 return 1;
             }));

@@ -2,7 +2,7 @@
   "criteria": {
     "place_jukebox": {
       "conditions": {
-        "block": "minecraft:wall_torch"
+        "block": "minecraft:jukebox"
       },
       "trigger": "minecraft:placed_block"
     }
@@ -12,6 +12,7 @@
     "description": {
       "translate": "what-was-that.advancements.break_jukebox.desc"
     },
+    "hidden": true,
     "icon": {
       "item": "minecraft:jukebox"
     },

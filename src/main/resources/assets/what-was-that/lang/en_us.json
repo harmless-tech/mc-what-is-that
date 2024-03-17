@@ -1,8 +1,10 @@
 {
+  "block.what-was-that.broken_jukebox": "Broken Jukebox",
+  "item.what-was-that.broken_jukebox.tooltip": "Was it worth it?",
   "modmenu.descriptionTranslation.what-was-that": "Is there something there... Or am I just crazy...",
   "modmenu.summaryTranslation.what-was-that": "Am I Crazy???",
-  "what-was-that.advancements.break_jukebox.desc": "I wonder if an iron sword would fit in the slot?",
-  "what-was-that.advancements.break_jukebox.title": "Destructive Curiosity",
+  "what-was-that.advancements.break_jukebox.desc": "I wonder if a sword would fit in that slot?",
+  "what-was-that.advancements.break_jukebox.title": "Can You Break It?",
   "what-was-that.advancements.root.desc": "What is it? This unsettling feeling... Something must here with us...",
   "what-was-that.advancements.root.title": "Something is wrong...",
   "what-was-that.midnightconfig.": "",

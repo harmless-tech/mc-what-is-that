@@ -1,4 +1,4 @@
-package tech.harmless.mc.whatwasthat.what;
+package tech.harmless.mc.whatwasthat.actions;
 
 import net.minecraft.core.Holder;
 import net.minecraft.network.protocol.game.ClientboundSoundPacket;
@@ -9,7 +9,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
-public class WASoundRunningTowards implements IWhat {
+public class ActionSoundRunningTowards implements IWhatAction {
     private final Holder<SoundEvent> sound;
     private final float increasePitch;
     private float pitch;
@@ -23,7 +23,7 @@ public class WASoundRunningTowards implements IWhat {
     private int maxSpacing;
     private boolean done;
 
-    public WASoundRunningTowards(
+    public ActionSoundRunningTowards(
             @NotNull ServerPlayer player,
             @NotNull Holder<SoundEvent> sound,
             double startDis,
