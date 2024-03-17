@@ -12,9 +12,12 @@ import org.slf4j.LoggerFactory;
 import tech.harmless.mc.whatwasthat.actions.ActionSoundRunningTowards;
 import tech.harmless.mc.whatwasthat.actions.WhatActions;
 import tech.harmless.mc.whatwasthat.advancements.JoinTrigger;
+import tech.harmless.mc.whatwasthat.blockentities.WhatBlockEntities;
 import tech.harmless.mc.whatwasthat.blocks.WhatBlocks;
 import tech.harmless.mc.whatwasthat.config.WhatConfig;
 import tech.harmless.mc.whatwasthat.events.PlayerJoinEvent;
+import tech.harmless.mc.whatwasthat.itemgroup.WhatItemGroup;
+import tech.harmless.mc.whatwasthat.items.WhatItems;
 
 public final class WhatWasThat implements ModInitializer {
     public static final String MOD_NAME = "What Was That?";
@@ -24,18 +27,18 @@ public final class WhatWasThat implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        // This code runs as soon as Minecraft is in a mod-load-ready state.
-        // However, some things (like resources) may still be uninitialized.
-        // Proceed with mild caution.
-
         LOGGER.info("Init Stage for {} ({})", MOD_NAME, MOD_ID);
 
         MidnightConfig.init(MOD_ID, WhatConfig.class);
 
-        // TODO: ITEMS
+        // Init Stuff
         WhatBlocks.init();
+        WhatBlockEntities.init();
+        WhatItems.init();
+        WhatItemGroup.init();
         WhatActions.init();
 
+        // Events
         PlayerJoinEvent.EVENT.register(JoinTrigger.JOIN_TRIGGER::trigger);
 
         // TODO: Remove!
@@ -52,21 +55,5 @@ public final class WhatWasThat implements ModInitializer {
                 return 1;
             }));
         }));
-
-        // Commands
-        //
-        // CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess,
-        // environment) -> {
-        // dispatcher.register(CommandManager.literal("wwt_test").executes(context -> {
-        // var src = context.getSource();
-        // var player = src.getPlayer();
-        //
-        // assert player != null;
-        // actions.add(new Tuple<>(player, new WhatSoundRunningTowards(player,
-        // RegistryEntry.of(SoundEvents.BLOCK_MUD_STEP), 250.0, 0.25f, 0.1f)));
-        //
-        // return 1;
-        // }));
-        // });
     }
 }

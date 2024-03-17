@@ -31,5 +31,6 @@
   "what-was-that.midnightconfig.ticksPerAttempt.tooltip": "Ticks until The Entity attempts an action or trys to lock onto a player.\nDefault is 5 seconds.",
   "what-was-that.midnightconfig.title": "What Was That? Config",
   "what-was-that.modrinth": "Modrinth",
+  "what-was-that.name": "What Was That?",
   "what-was-that.wiki": "Wiki"
 }
