@@ -151,7 +151,7 @@ spotless {
 		removeUnusedImports()
 		importOrder()
 		palantirJavaFormat()
-		formatAnnotations()
+		formatAnnotations().addTypeAnnotation("Comment").addTypeAnnotation("Entry")
 	}
 	groovy {
 		target "*.gradle"

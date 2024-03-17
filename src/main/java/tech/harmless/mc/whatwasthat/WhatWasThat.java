@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import tech.harmless.mc.whatwasthat.actions.ActionSoundRunningTowards;
 import tech.harmless.mc.whatwasthat.actions.WhatActions;
 import tech.harmless.mc.whatwasthat.advancements.JoinTrigger;
+import tech.harmless.mc.whatwasthat.advancements.WhatAdvancements;
 import tech.harmless.mc.whatwasthat.blockentities.WhatBlockEntities;
 import tech.harmless.mc.whatwasthat.blocks.WhatBlocks;
 import tech.harmless.mc.whatwasthat.config.WhatConfig;
@@ -36,6 +37,7 @@ public final class WhatWasThat implements ModInitializer {
         WhatBlockEntities.init();
         WhatItems.init();
         WhatItemGroup.init();
+        WhatAdvancements.init();
         WhatActions.init();
 
         // Events

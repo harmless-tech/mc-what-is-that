@@ -9,15 +9,18 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.JukeboxBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import tech.harmless.mc.whatwasthat.util.WhatUtils;
 
-public class BrokenJukeboxBlock extends JukeboxBlock {
+public class BrokenJukeboxBlock extends Block {
     public static final String ID = "broken_jukebox";
     public static final BlockBehaviour.Properties BLOCK_PROPS = FabricBlockSettings.create()
             .mapColor(MapColor.DIRT)
@@ -29,6 +32,11 @@ public class BrokenJukeboxBlock extends JukeboxBlock {
 
     public BrokenJukeboxBlock(BlockBehaviour.Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public @NotNull RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
     }
 
     @Override

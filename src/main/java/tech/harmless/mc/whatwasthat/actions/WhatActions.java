@@ -7,17 +7,18 @@ import net.minecraft.server.level.ServerPlayer;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import tech.harmless.mc.whatwasthat.WhatWasThat;
+import tech.harmless.mc.whatwasthat.advancements.WhatAdvancements;
 import tech.harmless.mc.whatwasthat.config.WhatConfig;
 
 // TODO: Target a player and bother them for a while.
 public class WhatActions {
-    static final ResourceLocation PHASE_1 = new ResourceLocation(WhatWasThat.MOD_ID, "tickphase1");
-    static final ResourceLocation PHASE_2 = new ResourceLocation(WhatWasThat.MOD_ID, "tickphase2");
+    static final ResourceLocation PHASE_1 = new ResourceLocation(WhatWasThat.MOD_ID, "tickactionphase1");
+    static final ResourceLocation PHASE_2 = new ResourceLocation(WhatWasThat.MOD_ID, "tickactionphase2");
 
     @Nullable private static ServerPlayer badPlayer;
 
-    private static int ticksBotherBadPlayer;
-    private static int maxTicksBotherBadPlayer;
+    private static int ticksLockBadPlayer;
+    private static int maxTicksLockBadPlayer;
 
     @Nullable private static IWhatAction action;
 
@@ -31,8 +32,8 @@ public class WhatActions {
 
     public static void set(@NotNull ServerPlayer player, @NotNull IWhatAction action) {
         WhatActions.badPlayer = player;
-        ticksBotherBadPlayer = 0;
-        maxTicksBotherBadPlayer = 0;
+        ticksLockBadPlayer = 0;
+        maxTicksLockBadPlayer = 0;
 
         WhatActions.action = action;
     }
@@ -41,10 +42,37 @@ public class WhatActions {
         tickTrack += 1;
         if (tickTrack < WhatConfig.ticksPerAttempt) return;
 
-        if (badPlayer != null) WhatWasThat.LOGGER.info("Holding player {}", badPlayer.getScoreboardName());
+        if (badPlayer != null) WhatWasThat.LOGGER.info("Locked to player {}", badPlayer.getScoreboardName());
 
         if (badPlayer == null) {
-            // TODO
+            // TODO: Lock onto a bad player
+            var player = world.getRandomPlayer();
+            if (player == null) return;
+
+            int score = (world.players().size() * WhatConfig.increasePerPlayer);
+            score += WhatAdvancements.isDoneTrackNether(player, world) ? WhatConfig.angerVisitedNether : 0;
+            score += WhatAdvancements.isDoneTrackEnd(player, world) ? WhatConfig.angerVisitedEnd : 0;
+            score += world.dimension().equals(ServerLevel.NETHER) ? WhatConfig.angerInNether : 0;
+            score += world.dimension().equals(ServerLevel.END) ? WhatConfig.angerInEnd : 0;
+
+            WhatWasThat.LOGGER.warn("Score for {} is {}.", player.getScoreboardName(), score);
+
+            //            player.getServer().getAdvancements()
+            //
+            //            world.getServer().getAdvancements().get();
+            //            player.getAdvancements().getOrStartProgress().isDone();
+
+            var i = world.dimensionTypeId().registry();
+            WhatWasThat.LOGGER.info(i.toString());
+
+            // TODO: Determine dimension using advancements.
+
+            //            Level.NETHER
+
+            //            Registry.register(BuiltInRegistries.)
+
+            //            world.registryAccess().registryOrThrow(BuiltInRegistries.)
+
         } else if (action == null) {
             // TODO
         }
@@ -78,13 +106,13 @@ public class WhatActions {
     public static void actorTickListener(ServerLevel world) {
         if (badPlayer == null || badPlayer.hasDisconnected()) {
             action = null;
-            ticksBotherBadPlayer = 0;
+            ticksLockBadPlayer = 0;
             return;
         }
-        ticksBotherBadPlayer++;
+        ticksLockBadPlayer++;
 
         if (action == null) {
-            if (ticksBotherBadPlayer >= maxTicksBotherBadPlayer) badPlayer = null;
+            if (ticksLockBadPlayer >= maxTicksLockBadPlayer) badPlayer = null;
             return;
         }
 
