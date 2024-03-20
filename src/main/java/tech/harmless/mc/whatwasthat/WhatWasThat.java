@@ -6,6 +6,9 @@ import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.core.Holder;
+import net.minecraft.network.chat.ChatType;
+import net.minecraft.network.chat.OutgoingChatMessage;
+import net.minecraft.network.chat.PlayerChatMessage;
 import net.minecraft.sounds.SoundEvents;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,6 +56,26 @@ public final class WhatWasThat implements ModInitializer {
                 WhatActions.set(
                         player,
                         new ActionSoundRunningTowards(player, Holder.direct(SoundEvents.MUD_STEP), 30.0, 0.25f, 0.05f));
+
+                return 1;
+            }));
+        }));
+
+        // TODO: Better cmd
+        CommandRegistrationCallback.EVENT.register(((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(Commands.literal("wwt_info").executes(context -> {
+                CommandSourceStack src = context.getSource();
+                var player = src.getPlayer();
+                assert player != null;
+
+                var p = WhatActions.getBadPlayer();
+                var name = p == null ? "@NULL" : p.getScoreboardName();
+                var t = WhatActions.getLockTicks();
+                player.sendChatMessage(
+                        OutgoingChatMessage.create(
+                                PlayerChatMessage.system(name + " for " + t.x() + " ticks, until " + t.y() + " ticks")),
+                        false,
+                        ChatType.bind(ChatType.CHAT, src));
 
                 return 1;
             }));
