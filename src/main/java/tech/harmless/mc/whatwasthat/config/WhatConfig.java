@@ -27,7 +27,7 @@ public final class WhatConfig extends MidnightConfig {
 
     @Comment(centered = true) public static Comment textChancesDesc;
 
-    @Entry(min = 1) public static int chanceInCave = 1000;
+    @Entry(min = 1) public static int chanceInCave = 100_000;
 
-    @Entry(min = 1) public static int chanceOutsideCave = 3000;
+    @Entry(min = 1) public static int chanceOutsideCave = 300_000;
 }

@@ -51,6 +51,7 @@ public class WhatActions {
     public static void decideTickListener(ServerLevel world) {
         tickTrack += 1;
         if (tickTrack < WhatConfig.ticksPerAttempt) return;
+        tickTrack = 0;
 
         if (badPlayer == null) {
             var player = world.getRandomPlayer();
@@ -65,13 +66,18 @@ public class WhatActions {
             score += world.dimension().equals(ServerLevel.NETHER) ? WhatConfig.angerInNether : 0;
             score += world.dimension().equals(ServerLevel.END) ? WhatConfig.angerInEnd : 0;
 
-            // Chance based on in cave or not
+            // Chance based on in a cave or not
             var chance = Integer.MAX_VALUE;
             if (player.position().y < world.getSeaLevel() && !world.canSeeSky(player.blockPosition()))
                 chance = WhatConfig.chanceInCave;
             else chance = WhatConfig.chanceOutsideCave;
 
+            // TODO: Add more dislike effects. (Maybe not sleeping for a while, phantoms?)
+            // TODO: If it likes you decrease score. (Min of 1 score)
+
             var i = random.nextInt(0, chance);
+            // TODO: Remove
+            WhatWasThat.LOGGER.info("cc: {} {} {}", i, score, chance);
             if (i < score) {
                 // TODO: base64 or hex logs
                 WhatWasThat.LOGGER.info("Player {} was locked.", player.getScoreboardName());
