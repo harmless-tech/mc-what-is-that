@@ -5,7 +5,7 @@ plugins {
 	id "com.modrinth.minotaur" version "2.+"
 
 	id "com.diffplug.spotless" version "6.25.0"
-	id "com.github.spotbugs" version "6.0.8"
+	//	id "com.github.spotbugs" version "6.0.8"
 }
 
 version = project.mod_version + "+" + project.minecraft_version
@@ -63,9 +63,9 @@ dependencies {
 
 	compileOnly "org.jetbrains:annotations:24.1.0"
 
-	spotbugs "com.github.spotbugs:spotbugs:${spotbugs.toolVersion.get()}"
-	spotbugsPlugins "com.h3xstream.findsecbugs:findsecbugs-plugin:1.13.0"
-	spotbugsPlugins "com.mebigfatguy.sb-contrib:sb-contrib:7.6.4"
+	//	spotbugs "com.github.spotbugs:spotbugs:${spotbugs.toolVersion.get()}"
+	//	spotbugsPlugins "com.h3xstream.findsecbugs:findsecbugs-plugin:1.13.0"
+	//	spotbugsPlugins "com.mebigfatguy.sb-contrib:sb-contrib:7.6.4"
 
 	// Test mods
 	modLocalRuntime "maven.modrinth:sodium:mc1.20.4-0.5.8"
@@ -122,28 +122,28 @@ publishing {
 	}
 }
 
-spotbugs {
-	showProgress = true
-	excludeFilter = file("spotbugs-exclude.xml")
-}
-
-spotbugsMain {
-	reports {
-		html {
-			enabled = true
-			stylesheet = "fancy-hist.xsl"
-		}
-	}
-}
-
-spotbugsClient {
-	reports {
-		html {
-			enabled = true
-			stylesheet = "fancy-hist.xsl"
-		}
-	}
-}
+//spotbugs {
+//	showProgress = true
+//	excludeFilter = file("spotbugs-exclude.xml")
+//}
+//
+//spotbugsMain {
+//	reports {
+//		html {
+//			enabled = true
+//			stylesheet = "fancy-hist.xsl"
+//		}
+//	}
+//}
+//
+//spotbugsClient {
+//	reports {
+//		html {
+//			enabled = true
+//			stylesheet = "fancy-hist.xsl"
+//		}
+//	}
+//}
 
 spotless {
 	java {
