@@ -6,6 +6,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.stats.Stats;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import tech.harmless.mc.whatwasthat.WhatWasThat;
@@ -66,14 +67,24 @@ public class WhatActions {
             score += world.dimension().equals(ServerLevel.NETHER) ? WhatConfig.angerInNether : 0;
             score += world.dimension().equals(ServerLevel.END) ? WhatConfig.angerInEnd : 0;
 
+            // TODO: Make this scale dynamically until a max amount of days and a max value.
+            var stats = player.getStats();
+            var sleep =
+                    Math.min(Math.max(stats.getValue(Stats.CUSTOM.get(Stats.TIME_SINCE_REST)), 1), Integer.MAX_VALUE);
+            if (sleep >= 72000) score += WhatConfig.increaseNoSleep3Days;
+            if (sleep >= 168000) score += WhatConfig.increaseNoSleep7Days;
+            if (sleep >= 336000) score += WhatConfig.increaseNoSleep14Days;
+
+            // TODO: Add more dislike effects.
+            //  (Maybe not sleeping for a while, phantoms?)
+            // TODO: If it likes you decrease score.
+            //  (Min of 1 score)
+
             // Chance based on in a cave or not
             var chance = Integer.MAX_VALUE;
             if (player.position().y < world.getSeaLevel() && !world.canSeeSky(player.blockPosition()))
                 chance = WhatConfig.chanceInCave;
             else chance = WhatConfig.chanceOutsideCave;
-
-            // TODO: Add more dislike effects. (Maybe not sleeping for a while, phantoms?)
-            // TODO: If it likes you decrease score. (Min of 1 score)
 
             var i = random.nextInt(0, chance);
             // TODO: Remove

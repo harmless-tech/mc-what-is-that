@@ -10,6 +10,7 @@ import net.minecraft.network.chat.ChatType;
 import net.minecraft.network.chat.OutgoingChatMessage;
 import net.minecraft.network.chat.PlayerChatMessage;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.stats.Stats;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tech.harmless.mc.whatwasthat.actions.ActionSoundRunningTowards;
@@ -76,6 +77,19 @@ public final class WhatWasThat implements ModInitializer {
                                 PlayerChatMessage.system(name + " for " + t.x() + " ticks, until " + t.y() + " ticks")),
                         false,
                         ChatType.bind(ChatType.CHAT, src));
+
+                return 1;
+            }));
+        }));
+        CommandRegistrationCallback.EVENT.register(((dispatcher, registryAccess, environment) -> {
+            dispatcher.register(Commands.literal("wwt_nosleep").executes(context -> {
+                CommandSourceStack src = context.getSource();
+                var player = src.getPlayer();
+                assert player != null;
+
+                var stats = player.getStats();
+                System.out.println("HE");
+                stats.setValue(player, Stats.CUSTOM.get(Stats.TIME_SINCE_REST), 336000);
 
                 return 1;
             }));

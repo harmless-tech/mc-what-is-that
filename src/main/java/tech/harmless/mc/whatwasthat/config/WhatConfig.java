@@ -23,6 +23,12 @@ public final class WhatConfig extends MidnightConfig {
 
     @Entry(min = 1) public static int increasePerPlayer = 2;
 
+    @Entry(min = 1) public static int increaseNoSleep3Days = 5;
+
+    @Entry(min = 1) public static int increaseNoSleep7Days = 10;
+
+    @Entry(min = 1) public static int increaseNoSleep14Days = 25;
+
     @Comment(centered = true) public static Comment textChances;
 
     @Comment(centered = true) public static Comment textChancesDesc;
